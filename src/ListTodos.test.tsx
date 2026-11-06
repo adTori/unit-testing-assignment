@@ -19,4 +19,18 @@ describe("ListTodos component", () => {
         expect(screen.getByText("Inga todos ännu!")).toBeInTheDocument();
     });
 
+    it("should display all todos passed through props", () => {
+        render (<ListTodos todos={["Handla mat", "Plugga React", "Städa"]} />);
+
+        expect(screen.getByText("Handla mat")).toBeInTheDocument();
+        expect(screen.getByText("Plugga React")).toBeInTheDocument();
+        expect(screen.getByText("Städa")).toBeInTheDocument();
+    });
+
+    it("should render as many li elements as there are todos", () => {
+        render(<ListTodos todos={["Handla mat", "Plugga React", "Städa"]} />);
+
+        expect(screen.getAllByRole("listitem")).toHaveLength(3);
+    });
+
 });
